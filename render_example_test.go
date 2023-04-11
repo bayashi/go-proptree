@@ -6,7 +6,7 @@ import (
 	pt "github.com/bayashi/go-proptree"
 )
 
-func ExampleRenderAsText() {
+func ExampleN_RenderAsText() {
 	n := tree()
 	n.RenderAsText(os.Stdout)
 	// Output:
