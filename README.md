@@ -44,7 +44,7 @@ It renders:
          This is a description about Child B.
     
 
-Another tree from `render_example_test.go`. This is FAKE history :-P
+Another tree from `render_example_test.go`.
 
     ┌ Version History
     │  This is version history of Fake Software.
