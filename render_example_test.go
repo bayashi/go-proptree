@@ -3,7 +3,7 @@ package proptree_test
 import (
 	"os"
 
-	pt "github.com/bayashi/proptree"
+	pt "github.com/bayashi/go-proptree"
 )
 
 func ExampleRenderAsText() {

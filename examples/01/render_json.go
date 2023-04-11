@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 
-	pt "github.com/bayashi/proptree"
+	pt "github.com/bayashi/go-proptree"
 )
 
 func RenderAsJSON(w io.Writer, n *pt.N) error {

@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	pt "github.com/bayashi/proptree"
+	pt "github.com/bayashi/go-proptree"
 )
 
 // This is for README example

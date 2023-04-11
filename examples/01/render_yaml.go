@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"io"
 
-	pt "github.com/bayashi/proptree"
-	"gopkg.in/yaml.v3"
+	pt "github.com/bayashi/go-proptree"
+	yaml "gopkg.in/yaml.v3"
 )
 
 func RenderAsYAML(w io.Writer, n *pt.N) error {
