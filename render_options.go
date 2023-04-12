@@ -55,11 +55,13 @@ func RenderTextDefaultOptions() *RenderTextOptions {
 	}
 }
 
-func (o *RenderTextOptions) Relax() {
+func (o *RenderTextOptions) Relax() *RenderTextOptions {
 	o.MarginTop            = 1
 	o.MarginLeft           = 1
 	o.ChildrenMarginTop    = 1
 	o.ChildrenMarginBottom = 1
 	o.HorizontalLinkLen    = 3
 	o.NamePaddingLeftLen   = 1
+
+	return o
 }
