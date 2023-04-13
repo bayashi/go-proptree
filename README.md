@@ -13,7 +13,7 @@ This is example code of `examples/01/main.go` in this repository.
     import (
     	"os"
 
-    	pt "github.com/bayashi/proptree"
+    	pt "github.com/bayashi/go-proptree"
     )
 
     func main() {
