@@ -8,28 +8,25 @@ Building tree data structure easily, and you can add Icon, Tag and Description p
 
 This is example code of `examples/01/main.go` in this repository.
 
-    package main
+```go
+package main
 
-    import (
-    	"os"
+import (
+	"os"
+	pt "github.com/bayashi/go-proptree"
+)
 
-    	pt "github.com/bayashi/go-proptree"
-    )
-
-    func main() {
-    	tree := pt.Node("Root").Icon("*").Tag("tag")
-
-    	child := pt.Node("Child A").
-    		Description("This is a description about Child.").
-    		Description("You can set multiple lines.")
-
-    	tree.Append(child).
-    		Append(pt.Node("Child B").Description("This is a description about Child B."))
-
-    	child.Append(pt.Node("Grandchild").Icon("@"))
-
-    	tree.RenderAsText(os.Stdout)
-    }
+func main() {
+	tree := pt.Node("Root").Icon("*").Tag("tag")
+	child := pt.Node("Child A").
+		Description("This is a description about Child.").
+		Description("You can set multiple lines.")
+	tree.Append(child).
+		Append(pt.Node("Child B").Description("This is a description about Child B."))
+	child.Append(pt.Node("Grandchild").Icon("@"))
+	tree.RenderAsText(os.Stdout)
+}
+```
 
 It renders:
 
