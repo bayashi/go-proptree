@@ -1,2 +1,6 @@
-github.com/bayashi/actually v0.0.0-20230411133236-08fdc1dad7b6 h1:IQhWJhqJZsIEdpqjiNtBoTF8aUV2b5w4OupCmJTr4No=
-github.com/bayashi/actually v0.0.0-20230411133236-08fdc1dad7b6/go.mod h1:AOQ5tXRDs9Nyfzs3gAIHhPnZlPfSGBM2UettgS0fkRs=
+github.com/bayashi/actually v0.5.2 h1:+kEE7yRpuNj6NiiWgE7wDoXbP9NQxYDX6q/0UW0hstA=
+github.com/bayashi/actually v0.5.2/go.mod h1:t/CPjz4FmuRKLae3ZY3u51j4J+I5EaucYFkJbDebs+4=
+github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
+github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
+github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
