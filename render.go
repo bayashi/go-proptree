@@ -121,7 +121,7 @@ func (n *N) buildStringBeforeDescription(opt *RenderTextOptions) string {
 		line += opt.VerticalLink
 	} else if n.isLast {
 		line += stringSpace
-	} else if n.depth() > 1 {
+	} else if n.depth() > 1 || !n.hasChild() {
 		line += opt.VerticalLink
 	}
 
