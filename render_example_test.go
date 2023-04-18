@@ -32,8 +32,8 @@ func ExampleN_RenderAsText() {
 
 func tree() *pt.N {
 	tree := pt.Node("Version History").
-			Description("This is version history of Fake Software.").
-			Description("Life is full of ups and downs.")
+		Description("This is version history of Fake Software.").
+		Description("Life is full of ups and downs.")
 
 	node1 := pt.Node("1.0")
 	tree.Append(node1)

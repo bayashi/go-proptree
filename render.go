@@ -64,7 +64,7 @@ func (n *N) buildNodeNameLine(opt *RenderTextOptions) string {
 		if n.hasChild() {
 			line += strings.Repeat(opt.HorizontalLink, opt.HorizontalLinkLen) + opt.ChildrenLink
 		} else {
-			line += strings.Repeat(opt.HorizontalLink, opt.HorizontalLinkLen + 1)
+			line += strings.Repeat(opt.HorizontalLink, opt.HorizontalLinkLen+1)
 		}
 	}
 
@@ -142,13 +142,13 @@ func (n *N) buildNodeTopMargin(opt *RenderTextOptions) string {
 	if n.hasChild() && opt.ChildrenMarginTop > 0 {
 		line := n.buildAncestorBranchesLine(&n.Children[0].ancestors, opt)
 		line += opt.VerticalLink
-		return strings.Repeat(line + stringNewLine, opt.ChildrenMarginTop)
+		return strings.Repeat(line+stringNewLine, opt.ChildrenMarginTop)
 	}
 
 	return ""
 }
 
-func (n *N) buildNodeBottomMargin(opt *RenderTextOptions ) string {
+func (n *N) buildNodeBottomMargin(opt *RenderTextOptions) string {
 	if !n.hasChild() && n.isLast && opt.ChildrenMarginBottom > 0 {
 		line := n.buildAncestorBranchesLine(&n.ancestors, opt)
 		return strings.Repeat(line, opt.ChildrenMarginBottom) + stringNewLine

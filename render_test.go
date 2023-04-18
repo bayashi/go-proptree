@@ -48,7 +48,7 @@ func TestRootChildWithProp(t *testing.T) {
 └──+ Child: tag
       Child description
 `
-	root  := Node("root").Icon("*").Tag("tag").Description("root description")
+	root := Node("root").Icon("*").Tag("tag").Description("root description")
 	child := Node("Child").Icon("+").Tag("tag").Description("Child description")
 	tree := render(root.Append(child))
 	actually.Got(tree).Expect(expect).ShowRawData().Same(t)
@@ -63,8 +63,8 @@ func TestRootChildGChildWithProp(t *testing.T) {
   └──$ G-Child: tag
         G-Child description
 `
-	root   := Node("root").Icon("*").Tag("tag").Description("root description")
-	child  := Node("Child").Icon("+").Tag("tag").Description("Child description")
+	root := Node("root").Icon("*").Tag("tag").Description("root description")
+	child := Node("Child").Icon("+").Tag("tag").Description("Child description")
 	gchild := Node("G-Child").Icon("$").Tag("tag").Description("G-Child description")
 	tree := root.Append(child.Append(gchild))
 	actually.Got(render(tree)).Expect(expect).ShowRawData().Same(t)
@@ -81,8 +81,8 @@ func TestRoot2ChildrenGChildWithProp(t *testing.T) {
 └──+ Child2: tag
       Child2 description
 `
-	root   := Node("root").Icon("*").Tag("tag").Description("root description")
-	child  := Node("Child").Icon("+").Tag("tag").Description("Child description")
+	root := Node("root").Icon("*").Tag("tag").Description("root description")
+	child := Node("Child").Icon("+").Tag("tag").Description("Child description")
 	gchild := Node("G-Child").Icon("$").Tag("tag").Description("G-Child description")
 	child2 := Node("Child2").Icon("+").Tag("tag").Description("Child2 description")
 	tree := root.Append(child.Append(gchild)).Append(child2)
@@ -102,8 +102,8 @@ func TestRoot3ChildrenGChildWithProp(t *testing.T) {
 └──+ Child3: tag
       Child3 description
 `
-	root   := Node("root").Icon("*").Tag("tag").Description("root description")
-	child  := Node("Child").Icon("+").Tag("tag").Description("Child description")
+	root := Node("root").Icon("*").Tag("tag").Description("root description")
+	child := Node("Child").Icon("+").Tag("tag").Description("Child description")
 	gchild := Node("G-Child").Icon("$").Tag("tag").Description("G-Child description")
 	child2 := Node("Child2").Icon("+").Tag("tag").Description("Child2 description")
 	child3 := Node("Child3").Icon("+").Tag("tag").Description("Child3 description")
@@ -164,7 +164,7 @@ func TestRelaxRootChildWithProp(t *testing.T) {
          Child description
  
 `
-	root  := Node("root").Icon("*").Tag("tag").Description("root description")
+	root := Node("root").Icon("*").Tag("tag").Description("root description")
 	child := Node("Child").Icon("+").Tag("tag").Description("Child description")
 	tree := renderWithO(root.Append(child), o)
 	actually.Got(tree).Expect(expect).ShowRawData().Same(t)
@@ -182,8 +182,8 @@ func TestRelaxRootChildGChildWithProp(t *testing.T) {
              G-Child description
      
 `
-	root   := Node("root").Icon("*").Tag("tag").Description("root description")
-	child  := Node("Child").Icon("+").Tag("tag").Description("Child description")
+	root := Node("root").Icon("*").Tag("tag").Description("root description")
+	child := Node("Child").Icon("+").Tag("tag").Description("Child description")
 	gchild := Node("G-Child").Icon("$").Tag("tag").Description("G-Child description")
 	tree := root.Append(child.Append(gchild))
 	actually.Got(renderWithO(tree, o)).Expect(expect).ShowRawData().Same(t)
@@ -204,8 +204,8 @@ func TestRelaxRoot2ChildrenGChildWithProp(t *testing.T) {
          Child2 description
  
 `
-	root   := Node("root").Icon("*").Tag("tag").Description("root description")
-	child  := Node("Child").Icon("+").Tag("tag").Description("Child description")
+	root := Node("root").Icon("*").Tag("tag").Description("root description")
+	child := Node("Child").Icon("+").Tag("tag").Description("Child description")
 	gchild := Node("G-Child").Icon("$").Tag("tag").Description("G-Child description")
 	child2 := Node("Child2").Icon("+").Tag("tag").Description("Child2 description")
 	tree := root.Append(child.Append(gchild)).Append(child2)
@@ -229,8 +229,8 @@ func TestRelaxRoot3ChildrenGChildWithProp(t *testing.T) {
          Child3 description
  
 `
-	root   := Node("root").Icon("*").Tag("tag").Description("root description")
-	child  := Node("Child").Icon("+").Tag("tag").Description("Child description")
+	root := Node("root").Icon("*").Tag("tag").Description("root description")
+	child := Node("Child").Icon("+").Tag("tag").Description("Child description")
 	gchild := Node("G-Child").Icon("$").Tag("tag").Description("G-Child description")
 	child2 := Node("Child2").Icon("+").Tag("tag").Description("Child2 description")
 	child3 := Node("Child3").Icon("+").Tag("tag").Description("Child3 description")
