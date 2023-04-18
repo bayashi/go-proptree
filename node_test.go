@@ -21,6 +21,10 @@ func TestNode(t *testing.T) {
 	n.Description("desc")
 	a.Got(n.hasDescription()).True(t)
 	a.Got(n.Prop.Descriptions[0]).Expect("desc").Same(t)
+
+	n.Descriptions([]string{"desc2", "desc3"})
+	a.Got(n.Prop.Descriptions[1]).Expect("desc2").Same(t)
+	a.Got(n.Prop.Descriptions[2]).Expect("desc3").Same(t)
 }
 
 func TestNodeAppend(t *testing.T) {
