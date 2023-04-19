@@ -151,7 +151,7 @@ func (n *N) buildNodeTopMargin(opt *RenderTextOptions) string {
 func (n *N) buildNodeBottomMargin(opt *RenderTextOptions ) string {
 	if !n.hasChild() && n.isLast && opt.ChildrenMarginBottom > 0 {
 		line := n.buildAncestorBranchesLine(&n.ancestors, opt)
-		return strings.Repeat(line, opt.ChildrenMarginBottom)
+		return strings.Repeat(line, opt.ChildrenMarginBottom) + stringNewLine
 	}
 
 	return ""
