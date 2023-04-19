@@ -8,7 +8,7 @@ import (
 
 func TestNode(t *testing.T) {
 	n := Node("foo")
-	a.Got(n).Expect(&N{ Name:"foo", isLast:true }).Same(t)
+	a.Got(n).Expect(&N{Name: "foo", isLast: true}).Same(t)
 	a.Got(n.Name).Expect("foo").Same(t)
 	a.Got(n.hasDescription()).False(t)
 

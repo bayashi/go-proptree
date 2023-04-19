@@ -7,16 +7,16 @@ type prop struct {
 }
 
 type N struct {
-	Name      string  `json:"name,omitempty" yaml:"name,omitempty"`
-	Prop      *prop   `json:"prop,omitempty" yaml:"prop,omitempty"`
-	Children  []*N    `json:"children,omitempty" yaml:"children,omitempty"`
+	Name      string `json:"name,omitempty" yaml:"name,omitempty"`
+	Prop      *prop  `json:"prop,omitempty" yaml:"prop,omitempty"`
+	Children  []*N   `json:"children,omitempty" yaml:"children,omitempty"`
 	ancestors []*N
 	isLast    bool
 }
 
 func Node(name string) *N {
 	return &N{
-		Name: name,
+		Name:   name,
 		isLast: true,
 	}
 }
