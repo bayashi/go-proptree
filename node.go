@@ -59,6 +59,16 @@ func (n *N) Description(description string) *N {
 	return n
 }
 
+func (n *N) Descriptions(descriptions []string) *N {
+	if n.Prop == nil {
+		n.Prop = &prop{Descriptions: descriptions}
+	} else {
+		n.Prop.Descriptions = append(n.Prop.Descriptions, descriptions...)
+	}
+
+	return n
+}
+
 func (n *N) hasDescription() bool {
 	if n.Prop == nil {
 		return false
