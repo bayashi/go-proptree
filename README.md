@@ -1,5 +1,9 @@
 # go-proptree
 
+<a href="https://github.com/bayashi/go-proptree/blob/main/LICENSE"><img src="https://img.shields.io/badge/LICENSE-MIT-GREEN.png"></a>
+<a href="https://github.com/bayashi/go-proptree/actions"><img src="https://github.com/bayashi/go-proptree/workflows/main/badge.svg?_t=1681289447"/></a>
+<a href="https://pkg.go.dev/github.com/bayashi/go-proptree"><img src="https://pkg.go.dev/badge/github.com/bayashi/go-proptree.svg" alt="Go Reference"></a>
+
 `go-proptree` provides a text tree view of nesting nodes with properties.
 
 Building tree data structure easily, and you can add Icon, Tag and Description properties on each node.
