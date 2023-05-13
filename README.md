@@ -66,6 +66,11 @@ Another tree from `render_example_test.go`.
       ├──! 1.4
       └──* 1.5: Newest
 
+You can add color to each node like below. See `examples/02/main.go`
+
+![colorized tree](https://user-images.githubusercontent.com/42190/238113810-df59e086-b580-43a8-8c2f-3eda1641cb3a.png)
+
+
 ## Installation
 
     go get github.com/bayashi/go-proptree
