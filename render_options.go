@@ -1,5 +1,7 @@
 package proptree
 
+import "github.com/fatih/color"
+
 type RenderTextOptions struct {
 	// symbols
 	HorizontalLink string
@@ -14,6 +16,12 @@ type RenderTextOptions struct {
 	GlobalTag          string
 	GlobalDescriptions []string
 	TagFormat          string
+
+	// color
+	GlobalNameColor        *color.Color
+	GlobalIconColor        *color.Color
+	GlobalTagColor         *color.Color
+	GlobalDescriptionColor *color.Color
 
 	// dimensions
 	MarginTop            int
@@ -44,6 +52,11 @@ func RenderTextDefaultOptions() *RenderTextOptions {
 		GlobalDescriptions: []string{},
 		TagFormat:          `: %s`,
 
+		GlobalNameColor:        nil,
+		GlobalIconColor:        nil,
+		GlobalTagColor:         nil,
+		GlobalDescriptionColor: nil,
+
 		MarginTop:            1,
 		MarginLeft:           0,
 		ChildrenMarginTop:    0,
@@ -62,6 +75,30 @@ func (o *RenderTextOptions) Relax() *RenderTextOptions {
 	o.ChildrenMarginBottom = 1
 	o.HorizontalLinkLen    = 3
 	o.NamePaddingLeftLen   = 1
+
+	return o
+}
+
+func (o *RenderTextOptions) SetGlobalNameColor(c ...color.Attribute) *RenderTextOptions {
+	o.GlobalNameColor = color.New(c...)
+
+	return o
+}
+
+func (o *RenderTextOptions) SetGlobalIconColor(c ...color.Attribute) *RenderTextOptions {
+	o.GlobalIconColor = color.New(c...)
+
+	return o
+}
+
+func (o *RenderTextOptions) SetGlobalTagColor(c ...color.Attribute) *RenderTextOptions {
+	o.GlobalTagColor = color.New(c...)
+
+	return o
+}
+
+func (o *RenderTextOptions) SetGlobalDescriptionColor(c ...color.Attribute) *RenderTextOptions {
+	o.GlobalDescriptionColor = color.New(c...)
 
 	return o
 }

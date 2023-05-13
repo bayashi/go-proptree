@@ -34,7 +34,9 @@ func settleOpt(opts ...*RenderTextOptions) *RenderTextOptions {
 
 func (n *N) growTree(treeLine *string, opt *RenderTextOptions) {
 	if opt.TurnOffProp {
-		n.Prop = nil
+		n.Prop = &prop{
+			Name: n.Prop.Name,
+		}
 	}
 
 	if n.isRoot() && opt.MarginTop > 0 {
@@ -68,21 +70,67 @@ func (n *N) buildNodeNameLine(opt *RenderTextOptions) string {
 		}
 	}
 
-	if n.Prop != nil && !isBlank(n.Prop.Icon) {
-		line += n.Prop.Icon
+	return line + n.buildIcon(opt) + spaces(opt.NamePaddingLeftLen) + n.buildName(opt) + n.buildTag(opt) + stringNewLine
+}
+
+func (n *N) buildIcon(opt *RenderTextOptions) string {
+	if !isBlank(n.Prop.Icon) {
+		if n.Prop.IconColor != nil {
+			return n.Prop.IconColor.Sprint(n.Prop.Icon)
+		} else if opt.GlobalIconColor != nil {
+			return opt.GlobalIconColor.Sprint(n.Prop.Icon)
+		} else {
+			return n.Prop.Icon
+		}
 	} else if !isBlank(opt.GlobalIcon) {
-		line += opt.GlobalIcon
+		if n.Prop.IconColor != nil {
+			return n.Prop.IconColor.Sprint(opt.GlobalIcon)
+		} else if opt.GlobalIconColor != nil {
+			return opt.GlobalIconColor.Sprint(opt.GlobalIcon)
+		} else {
+			return opt.GlobalIcon
+		}
 	}
 
-	line += spaces(opt.NamePaddingLeftLen) + n.Name
+	return ""
+}
 
-	if n.Prop != nil && !isBlank(n.Prop.Tag) {
-		line += fmt.Sprintf(opt.TagFormat, n.Prop.Tag)
+func (n *N) buildName(opt *RenderTextOptions) string {
+	if !isBlank(n.Prop.Name) {
+		if n.Prop.NameColor != nil {
+			return n.RenderName()
+		} else if opt.GlobalNameColor != nil {
+			return opt.GlobalNameColor.Sprint(n.Prop.Name)
+		} else {
+			return n.Prop.Name
+		}
+	}
+
+	return ""
+}
+
+func (n *N) buildTag(opt *RenderTextOptions) string {
+	if !isBlank(n.Prop.Tag) {
+		tagString := fmt.Sprintf(opt.TagFormat, n.Prop.Tag)
+		if n.Prop.TagColor != nil {
+			return n.Prop.TagColor.Sprint(tagString)
+		} else if opt.GlobalTagColor != nil {
+			return opt.GlobalTagColor.Sprint(tagString)
+		} else {
+			return tagString
+		}
 	} else if !isBlank(opt.GlobalTag) {
-		line += fmt.Sprintf(opt.TagFormat, opt.GlobalTag)
+		tagString := fmt.Sprintf(opt.TagFormat, opt.GlobalTag)
+		if n.Prop.TagColor != nil {
+			return n.Prop.TagColor.Sprint(tagString)
+		} else if opt.GlobalTagColor != nil {
+			return opt.GlobalTagColor.Sprint(tagString)
+		} else {
+			return tagString
+		}
 	}
 
-	return line + stringNewLine
+	return ""
 }
 
 func (n *N) buildDescriptions(opt *RenderTextOptions) string {
@@ -97,6 +145,11 @@ func (n *N) buildDescriptions(opt *RenderTextOptions) string {
 
 	line := ""
 	for _, description := range descriptions {
+		if n.Prop.DescriptionColor != nil {
+			description = n.Prop.DescriptionColor.Sprint(description)
+		} else if opt.GlobalDescriptionColor != nil {
+			description = opt.GlobalDescriptionColor.Sprint(description)
+		}
 		line += n.buildStringBeforeDescription(opt) + description + stringNewLine
 	}
 
