@@ -1,3 +1,4 @@
+// proptree handles nested node tree with properties `Name`, `Icon`, `Tag` and `Description`.
 package proptree
 
 import (
@@ -15,6 +16,7 @@ type prop struct {
 	DescriptionColor *color.Color
 }
 
+// N stores node data.
 type N struct {
 	Prop      *prop `json:"prop,omitempty" yaml:"prop,omitempty"`
 	Children  []*N  `json:"children,omitempty" yaml:"children,omitempty"`
@@ -22,6 +24,7 @@ type N struct {
 	isLast    bool
 }
 
+// Node returns struct `N` with `Name` and `color.Attribute`.
 func Node(name string, c ...color.Attribute) *N {
 	n := &N{
 		isLast: true,
@@ -37,6 +40,7 @@ func Node(name string, c ...color.Attribute) *N {
 	return n
 }
 
+// NameColor is a setter for a color attribute for a name property.
 func (n *N) NameColor(c ...color.Attribute) *N {
 	n.Prop.NameColor = color.New(c...)
 
@@ -51,6 +55,8 @@ func (n *N) RenderName() string {
 	return n.Prop.Name
 }
 
+// Icon is a setter to set a string for icon attribute.
+// 2nd- args are set for `IconColor` attribute.
 func (n *N) Icon(icon string, c ...color.Attribute) *N {
 	n.Prop.Icon = icon
 
@@ -61,6 +67,7 @@ func (n *N) Icon(icon string, c ...color.Attribute) *N {
 	return n
 }
 
+// IconColor is a setter for a color attribute for an icon property.
 func (n *N) IconColor(c ...color.Attribute) *N {
 	n.Prop.IconColor = color.New(c...)
 
@@ -71,6 +78,8 @@ func (n *N) iconLen() int {
 	return len(n.Prop.Icon)
 }
 
+// Tag is a setter to set a string for tag attribute.
+// 2nd- args are set for `TagColor` attribute.
 func (n *N) Tag(tag string, c ...color.Attribute) *N {
 	n.Prop.Tag = tag
 
@@ -81,16 +90,21 @@ func (n *N) Tag(tag string, c ...color.Attribute) *N {
 	return n
 }
 
+// TagColor is a setter for a color attribute for a tag property.
 func (n *N) TagColor(c ...color.Attribute) *N {
 	n.Prop.TagColor = color.New(c...)
 
 	return n
 }
 
+// Description is a setter to set a string for description attribute.
+// 2nd- args are set for `DescriptionColor` attribute.
 func (n *N) Description(description string, c ...color.Attribute) *N {
 	return n.Descriptions([]string{description}, c...)
 }
 
+// Descriptions method is a setter to set multiple lines for description attribute.
+// 2nd- args are set for `DescriptionColor` attribute.
 func (n *N) Descriptions(descriptions []string, c ...color.Attribute) *N {
 	n.Prop.Descriptions = append(n.Prop.Descriptions, descriptions...)
 
@@ -101,6 +115,7 @@ func (n *N) Descriptions(descriptions []string, c ...color.Attribute) *N {
 	return n
 }
 
+// DescriptionColor is a setter for a color attribute for a description property.
 func (n *N) DescriptionColor(c ...color.Attribute) *N {
 	n.Prop.DescriptionColor = color.New(c...)
 
@@ -123,6 +138,7 @@ func (n *N) depth() int {
 	return len(n.ancestors)
 }
 
+// Append appends a node tree.
 func (n *N) Append(c *N) *N {
 	if len(c.ancestors) != 0 {
 		panic("Node already having a parent")

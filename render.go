@@ -11,6 +11,7 @@ const (
 	stringNewLine = "\n"
 )
 
+// RenderAsText renders a node tree as text, and output.
 func (n *N) RenderAsText(w io.Writer, opts ...*RenderTextOptions) error {
 	opt := settleOpt(opts...)
 

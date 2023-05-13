@@ -2,6 +2,7 @@ package proptree
 
 import "github.com/fatih/color"
 
+// RenderTextOptions is a struct for rendering text.
 type RenderTextOptions struct {
 	// symbols
 	HorizontalLink string
@@ -38,6 +39,7 @@ type RenderTextOptions struct {
 	marginLeftString string
 }
 
+// RenderTextDefaultOptions is a dataset of rendering options by default.
 func RenderTextDefaultOptions() *RenderTextOptions {
 	return &RenderTextOptions{
 		HorizontalLink: "─",
@@ -68,6 +70,7 @@ func RenderTextDefaultOptions() *RenderTextOptions {
 	}
 }
 
+// Relax is a optional data adjuster for relaxed view.
 func (o *RenderTextOptions) Relax() *RenderTextOptions {
 	o.MarginTop            = 1
 	o.MarginLeft           = 1
@@ -79,24 +82,28 @@ func (o *RenderTextOptions) Relax() *RenderTextOptions {
 	return o
 }
 
+// SetGlobalNameColor is a setter to set GlobalNameColor
 func (o *RenderTextOptions) SetGlobalNameColor(c ...color.Attribute) *RenderTextOptions {
 	o.GlobalNameColor = color.New(c...)
 
 	return o
 }
 
+// SetGlobalIconColor is a setter to set GlobalIconColor
 func (o *RenderTextOptions) SetGlobalIconColor(c ...color.Attribute) *RenderTextOptions {
 	o.GlobalIconColor = color.New(c...)
 
 	return o
 }
 
+// SetGlobalTagColor is a setter to set GlobalTagColor
 func (o *RenderTextOptions) SetGlobalTagColor(c ...color.Attribute) *RenderTextOptions {
 	o.GlobalTagColor = color.New(c...)
 
 	return o
 }
 
+// SetGlobalDescriptionColor is a setter to set GlobalDescriptionColor
 func (o *RenderTextOptions) SetGlobalDescriptionColor(c ...color.Attribute) *RenderTextOptions {
 	o.GlobalDescriptionColor = color.New(c...)
 
