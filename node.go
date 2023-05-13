@@ -1,80 +1,114 @@
 package proptree
 
+import (
+	"github.com/fatih/color"
+)
+
 type prop struct {
-	Icon         string   `json:"icon,omitempty" yaml:"icon,omitempty"`
-	Tag          string   `json:"tag,omitempty" yaml:"tag,omitempty"`
-	Descriptions []string `json:"description,omitempty" yaml:"description,omitempty"`
+	Name             string `json:"name,omitempty" yaml:"name,omitempty"`
+	NameColor        *color.Color
+	Icon             string `json:"icon,omitempty" yaml:"icon,omitempty"`
+	IconColor        *color.Color
+	Tag              string `json:"tag,omitempty" yaml:"tag,omitempty"`
+	TagColor         *color.Color
+	Descriptions     []string `json:"description,omitempty" yaml:"description,omitempty"`
+	DescriptionColor *color.Color
 }
 
 type N struct {
-	Name      string `json:"name,omitempty" yaml:"name,omitempty"`
-	Prop      *prop  `json:"prop,omitempty" yaml:"prop,omitempty"`
-	Children  []*N   `json:"children,omitempty" yaml:"children,omitempty"`
+	Prop      *prop `json:"prop,omitempty" yaml:"prop,omitempty"`
+	Children  []*N  `json:"children,omitempty" yaml:"children,omitempty"`
 	ancestors []*N
 	isLast    bool
 }
 
-func Node(name string) *N {
-	return &N{
-		Name:   name,
+func Node(name string, c ...color.Attribute) *N {
+	n := &N{
 		isLast: true,
+		Prop: &prop{
+			Name: name,
+		},
 	}
+
+	if len(c) > 0 {
+		n.Prop.NameColor = color.New(c...)
+	}
+
+	return n
 }
 
-func (n *N) Icon(icon string) *N {
-	if n.Prop == nil {
-		n.Prop = &prop{Icon: icon}
-	} else {
-		n.Prop.Icon = icon
+func (n *N) NameColor(c ...color.Attribute) *N {
+	n.Prop.NameColor = color.New(c...)
+
+	return n
+}
+
+func (n *N) RenderName() string {
+	if n.Prop.NameColor != nil {
+		return n.Prop.NameColor.Sprint(n.Prop.Name)
 	}
+
+	return n.Prop.Name
+}
+
+func (n *N) Icon(icon string, c ...color.Attribute) *N {
+	n.Prop.Icon = icon
+
+	if len(c) > 0 {
+		n.Prop.IconColor = color.New(c...)
+	}
+
+	return n
+}
+
+func (n *N) IconColor(c ...color.Attribute) *N {
+	n.Prop.IconColor = color.New(c...)
 
 	return n
 }
 
 func (n *N) iconLen() int {
-	if n.Prop == nil {
-		return 0
-	} else {
-		return len(n.Prop.Icon)
-	}
+	return len(n.Prop.Icon)
 }
 
-func (n *N) Tag(tag string) *N {
-	if n.Prop == nil {
-		n.Prop = &prop{Tag: tag}
-	} else {
-		n.Prop.Tag = tag
+func (n *N) Tag(tag string, c ...color.Attribute) *N {
+	n.Prop.Tag = tag
+
+	if len(c) > 0 {
+		n.Prop.TagColor = color.New(c...)
 	}
 
 	return n
 }
 
-func (n *N) Description(description string) *N {
-	if n.Prop == nil {
-		n.Prop = &prop{Descriptions: []string{description}}
-	} else {
-		n.Prop.Descriptions = append(n.Prop.Descriptions, description)
+func (n *N) TagColor(c ...color.Attribute) *N {
+	n.Prop.TagColor = color.New(c...)
+
+	return n
+}
+
+func (n *N) Description(description string, c ...color.Attribute) *N {
+	return n.Descriptions([]string{description}, c...)
+}
+
+func (n *N) Descriptions(descriptions []string, c ...color.Attribute) *N {
+	n.Prop.Descriptions = append(n.Prop.Descriptions, descriptions...)
+
+	if len(c) > 0 {
+		n.Prop.DescriptionColor = color.New(c...)
 	}
 
 	return n
 }
 
-func (n *N) Descriptions(descriptions []string) *N {
-	if n.Prop == nil {
-		n.Prop = &prop{Descriptions: descriptions}
-	} else {
-		n.Prop.Descriptions = append(n.Prop.Descriptions, descriptions...)
-	}
+func (n *N) DescriptionColor(c ...color.Attribute) *N {
+	n.Prop.DescriptionColor = color.New(c...)
 
 	return n
 }
 
 func (n *N) hasDescription() bool {
-	if n.Prop == nil {
-		return false
-	} else {
-		return len(n.Prop.Descriptions) > 0
-	}
+	return len(n.Prop.Descriptions) > 0
 }
 
 func (n *N) hasChild() bool {
